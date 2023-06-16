@@ -2,8 +2,8 @@ package com.project.boot.user.service;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import project.product.user.model.UserMapper;
-import project.product.user.model.UserVO;
+import com.project.boot.user.model.UserMapper;
+import com.project.boot.user.model.UserVO;
 
 @Service
 @RequiredArgsConstructor

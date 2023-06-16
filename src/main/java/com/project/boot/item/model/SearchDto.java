@@ -2,7 +2,7 @@ package com.project.boot.item.model;
 
 import lombok.Getter;
 import lombok.Setter;
-import project.product.item.paging.Pagination;
+import com.project.boot.item.paging.Pagination;
 
 @Getter
 @Setter

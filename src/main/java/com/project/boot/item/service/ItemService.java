@@ -2,9 +2,9 @@ package com.project.boot.item.service;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import project.product.item.model.ItemMapper;
-import project.product.item.model.ItemVO;
-import project.product.item.model.SearchDto;
+import com.project.boot.item.model.ItemMapper;
+import com.project.boot.item.model.ItemVO;
+import com.project.boot.item.model.SearchDto;
 
 import java.util.List;
 @Service

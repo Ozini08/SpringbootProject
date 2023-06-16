@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="project.product.user.model.UserMapper">
+<mapper namespace="com.project.boot.user.model.UserMapper">
     <!-- 회원가입 -->
     <insert id="insertUser">
         INSERT INTO ADMINMEMBER
@@ -10,7 +10,7 @@
     </insert>
 
     <!--회원 조회-->
-    <select id="findById" resultType="project.product.user.model.UserVO">
+    <select id="findById" resultType="com.project.boot.user.model.UserVO">
         SELECT NO, ID, PASSWORD, NAME
         FROM ADMINMEMBER
         WHERE id=#{id}

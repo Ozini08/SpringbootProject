@@ -1,7 +1,7 @@
 package com.project.boot.item.paging;
 
 import lombok.Getter;
-import project.product.item.model.SearchDto;
+import com.project.boot.item.model.SearchDto;
 
 @Getter
 public class Pagination {
