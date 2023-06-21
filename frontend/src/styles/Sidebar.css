@@ -1,0 +1,30 @@
+.sidebar {
+    background-color: lightsteelblue;
+    color: white;
+    position: fixed;
+    top: auto; /* Header의 높이만큼 아래로 이동 */
+    left: 0;
+    height: 100%;
+    width: 150px;
+    padding: 40px;
+    z-index: 1; /* Sidebar의 z-index 값을 설정 */
+    font-family: '나눔고딕', sans-serif;
+    font-size: 17px;
+}
+
+.sidebar ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.sidebar ul li {
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: center;
+}
+
+.sidebar ul li a {
+    color: white;
+    text-decoration: none;
+}

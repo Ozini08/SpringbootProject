@@ -1,0 +1,32 @@
+.header {
+    background-color: lightslategray;
+    color: white;
+    font-weight: bold;
+    font-family: '나눔고딕', sans-serif;
+}
+
+.header ul {
+    display: flex;
+    align-items: center;
+    list-style-type: none;
+    margin: 0;
+    padding: 10px;
+}
+
+.header ul li {
+    margin-right: 10px;
+}
+
+.header ul li:first-child {
+    margin-right: auto;
+}
+
+.header ul li a {
+    color: white;
+    text-decoration: none;
+}
+.logo {
+    margin-left: 15px;
+    width: 40px; /* 이미지의 너비 조정 */
+    height: auto; /* 이미지의 높이 자동 조정 */
+}
