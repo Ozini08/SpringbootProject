@@ -1,24 +1,28 @@
-import axios from 'axios';
+import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css'
-import {Routes} from "react-router-dom";
-import {Nav, Navbar} from "react-bootstrap";
+import { Link } from 'react-router-dom';
+import '../styles/Header.css';
+import logo from '../images/snoopy1.png'; // 이미지 파일 경로
 function Header(){
-    return(
-        <div className="App container py-3">
-            <Navbar collapseOnSelect bg="light" expand="md" className="mb-3 px-3">
-                <Navbar.Brand href="/" className="font-weight-bold text-muted">
-                    Scratch
-                </Navbar.Brand>
-                <Navbar.Toggle />
-                <Navbar.Collapse className="justify-content-end">
-                    <Nav>
-                        <Nav.Link href="/signup">Signup</Nav.Link>
-                        <Nav.Link href="/login">Login</Nav.Link>
-                    </Nav>
-                </Navbar.Collapse>
-            </Navbar>
-            <Routes />
-        </div>
+    return (
+        <header className = "header">
+            <nav>
+                <ul className="header-ul">
+                    <li className="logo-container">
+                        <Link to="/">
+                            <img src={logo} alt="Logo" className="logo" /> Home
+                        </Link>
+                    </li>
+                    <li className="header-right">
+                        <Link to="/mypage">마이페이지</Link>
+                    </li>
+                    <li className="header-right">
+                        <Link to="/signup">회원가입</Link>
+                    </li>
+                </ul>
+            </nav>
+        </header>
     );
-}
+};
+
 export default Header;
