@@ -1,6 +1,6 @@
 import React from 'react';
-
-const Bestlist = () => {
+import '../styles/GlobalStyles.css';
+const BestList = () => {
     return (
         <div>
             <h2>인기상품목록</h2>
@@ -9,4 +9,4 @@ const Bestlist = () => {
     );
 };
 
-export default Bestlist;
+export default BestList;

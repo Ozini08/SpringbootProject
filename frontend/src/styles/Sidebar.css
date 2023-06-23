@@ -2,19 +2,24 @@
     background-color: lightsteelblue;
     color: white;
     position: fixed;
-    top: auto; /* Header의 높이만큼 아래로 이동 */
+    /*position: relative;*/
+    /*position: absolute;*/
+    top: 0; /* 상단에 정렬 */
     left: 0;
-    height: 100%;
+    /*height: calc(100% - 50px); !* 헤더의 높이를 고려하여 사이즈 조정 *!*/
     width: 150px;
-    padding: 40px;
-    z-index: 1; /* Sidebar의 z-index 값을 설정 */
+    bottom: 0;
+    /*padding: 40px;*/
+    z-index: 0;
     font-family: '나눔고딕', sans-serif;
     font-size: 17px;
 }
 
+
 .sidebar ul {
+    margin-top: 100px;
     list-style-type: none;
-    margin: 0;
+    /*margin: 0;*/
     padding: 0;
 }
 

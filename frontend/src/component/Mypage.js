@@ -1,6 +1,6 @@
 import React from 'react';
 import data from "bootstrap/js/src/dom/data";
-
+import '../styles/GlobalStyles.css';
 function Mypage(){
     return (
         <div>

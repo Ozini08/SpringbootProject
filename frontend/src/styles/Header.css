@@ -3,8 +3,14 @@
     color: white;
     font-weight: bold;
     font-family: '나눔고딕', sans-serif;
+    height: 60px;
+    /*position: fixed;*/
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1; /* 더 높은 z-index 값 설정 */
 }
-
 .header ul {
     display: flex;
     align-items: center;

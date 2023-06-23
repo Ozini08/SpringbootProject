@@ -1,5 +1,5 @@
 import React from 'react';
-
+import '../styles/GlobalStyles.css';
 const Signup = () => {
     return (
         <div>

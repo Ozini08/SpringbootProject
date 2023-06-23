@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Boardlist = () => {
+const BoardList = () => {
     return (
         <div>
             <h2>게시판목록</h2>
@@ -9,4 +9,4 @@ const Boardlist = () => {
     );
 };
 
-export default Boardlist;
+export default BoardList;

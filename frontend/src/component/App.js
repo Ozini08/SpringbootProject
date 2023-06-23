@@ -7,9 +7,9 @@ import Sidebar from './Sidebar';
 import Home from './Home';
 import Mypage from './Mypage';
 import Signup from './Signup';
-import BestList from './Bestlist';
-import ProductList from './Productlist';
-import BoardList from './Boardlist';
+import BestList from './BestList';
+import ProductList from './ProductList';
+import BoardList from './BoardList';
 import '../App.css';
 
 function App() {
@@ -32,9 +32,9 @@ function App() {
                         <Route path="/" element={<Home/>}/>
                         <Route path="/mypage" element={<Mypage/>}/>
                         <Route path="/signup" element={<Signup/>}/>
-                        <Route path="/bestlist" element={<BestList/>}/>
-                        <Route path="/productlist" element={<ProductList/>}/>
-                        <Route path="/boardlist" element={<BoardList/>}/>
+                        <Route path="/bestList" element={<BestList/>}/>
+                        <Route path="/productList" element={<ProductList/>}/>
+                        <Route path="/boardList" element={<BoardList/>}/>
                     </Routes>
                     <div>본문 내용이 들어갈 자리, 백엔드에서 가져온 데이터: {hello}</div>
                 </main>

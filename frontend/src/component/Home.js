@@ -1,3 +1,5 @@
+import '../styles/GlobalStyles.css';
+
 function Home(){
     return(
         <div>
