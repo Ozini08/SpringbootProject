@@ -8,9 +8,9 @@ function Sidebar(){
         <aside className="sidebar">
             <nav>
                 <ul>
-                    <li><Link to="/bestlist">인기목록</Link></li>
-                    <li><Link to="/productlist">물품목록</Link></li>
-                    <li><Link to="/boardlist">게시판</Link></li>
+                    <li><Link to="/bestList">인기목록</Link></li>
+                    <li><Link to="/productList">물품목록</Link></li>
+                    <li><Link to="/boardList">게시판</Link></li>
                 </ul>
             </nav>
         </aside>

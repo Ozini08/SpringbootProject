@@ -1,0 +1,93 @@
+/* BoardList.css */
+
+/* 전체 컨테이너 스타일 */
+.board-container {
+    /*background-color: black;*/
+}
+
+/* 테이블 스타일 */
+.board-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+/* 테이블 헤더 스타일 */
+.board-table thead {
+    background-color: lightgrey;
+}
+
+.board-table th {
+    font-family: '나눔고딕', sans-serif;
+    font-weight: bold;
+    text-align: center; /* 가로 중앙 정렬 */
+    padding: 12px;
+}
+
+/* 테이블 데이터 스타일 */
+.board-table td {
+    font-family: '나눔고딕', sans-serif;
+    text-align: center; /* 가로 중앙 정렬 */
+    padding: 12px;
+    background-color: white;
+}
+
+/* 번호 열 스타일 */
+.board-table td:first-child {
+    width: 60px;
+}
+
+/* 제목 열 스타일 */
+.board-table td:nth-child(2) {
+    width: 400px;
+}
+
+/* 글쓴이 열 스타일 */
+.board-table td:nth-child(3) {
+    width: 120px;
+}
+
+/* 등록일 열 스타일 */
+.board-table td:nth-child(4) {
+    width: 120px;
+}
+
+/* 조회 열 스타일 */
+.board-table td:nth-child(5) {
+    width: 80px;
+}
+
+/* 추천 열 스타일 */
+.board-table td:nth-child(6) {
+    width: 80px;
+}
+
+/* 검색 및 카테고리 스타일 */
+.board-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.board-search {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.board-search select,
+.board-search input,
+.board-search button {
+    padding: 5px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+}
+
+.write-button {
+    font-family: '나눔고딕', sans-serif;
+    font-size: 14px;
+    padding: 5px 16px;
+    background-color: powderblue;
+    border: none;
+    cursor: pointer;
+}

@@ -11,17 +11,10 @@ import BestList from './BestList';
 import ProductList from './ProductList';
 import BoardList from './BoardList';
 import '../App.css';
+import ProductAdd from "./ProductAdd";
+import BoardAdd from "./BoardAdd";
 
 function App() {
-    const [hello, setHello] = useState('');
-
-    useEffect(() => {
-        axios
-            .get('/api/hello')
-            .then((response) => setHello(response.data))
-            .catch((error) => console.log(error));
-    }, []);
-
     return (
         <Router>
             <Header/>
@@ -35,8 +28,9 @@ function App() {
                         <Route path="/bestList" element={<BestList/>}/>
                         <Route path="/productList" element={<ProductList/>}/>
                         <Route path="/boardList" element={<BoardList/>}/>
+                        <Route path="/productAdd" element={<ProductAdd/>}/>
+                        <Route path="/boardAdd" element={<BoardAdd/>}/>
                     </Routes>
-                    <div>본문 내용이 들어갈 자리, 백엔드에서 가져온 데이터: {hello}</div>
                 </main>
             </div>
         </Router>
