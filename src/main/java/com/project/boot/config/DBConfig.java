@@ -1,4 +1,4 @@
-package com.project.boot.config;
-
-public class DBConfig {
-}
+//package com.project.boot.config;
+//
+//public class DBConfig {
+//}
