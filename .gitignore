@@ -44,4 +44,3 @@ out/
 out
 gen
 application.properties
-!**/src/main/java/com/project/boot/config/

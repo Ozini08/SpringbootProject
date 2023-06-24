@@ -1,0 +1,41 @@
+.board-container {
+    /*background-color: black;*/
+}
+
+.form-container {
+    width: 600px;
+    margin: 0 auto;
+}
+
+.form-row {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.form-row label {
+    width: 80px;
+}
+
+.form-row input[type='text'],
+.form-row textarea {
+    flex: 2;
+    padding: 5px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+}
+
+.form-row textarea {
+    flex: 2;
+    height: 300px;
+    resize: vertical;
+}
+
+button[type='submit'] {
+    font-family: '나눔고딕', sans-serif;
+    font-size: 14px;
+    padding: 5px 16px;
+    background-color: powderblue;
+    border: none;
+    cursor: pointer;
+}
