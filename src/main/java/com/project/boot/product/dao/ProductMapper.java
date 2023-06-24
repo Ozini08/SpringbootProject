@@ -21,4 +21,6 @@ public interface ProductMapper {
             @Param("category") String category,
             @Param("keyword") String keyword
     );
+    List<ProductVo> findBestProducts();
+    List<ProductVo> findProductInfo(int productNo);
 }

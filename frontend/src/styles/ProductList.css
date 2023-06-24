@@ -15,13 +15,15 @@
 .product-name {
     font-weight: bold;
 }
-
-.product-origin,
-.product-price,
-.product-category,
-.product-today {
-    margin-top: 5px;
+.product-image {
+    width: 200px;
+    height: 200px;
 }
+
+/*.product-price,*/
+/*.product-category{*/
+/*    margin-top: 5px;*/
+/*}*/
 
 .pagination {
     margin-top: 20px;

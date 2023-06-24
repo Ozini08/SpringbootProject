@@ -2,43 +2,73 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.project.boot.product.dao.ProductMapper">
+    <!--전체 리스트 불러오기-->
     <select id="findProductsByPage" resultType="com.project.boot.product.domain.ProductVo">
         SELECT
-        PRODUCTNAME,
-        PRODUCTORIGIN,
-        PRODUCTPRICE,
-        PRODUCTCATEGORY,
-        TODAY
-        FROM PRODUCT
+        PRODUCT_NO,
+        PRODUCT_NAME,
+        PRODUCT_PRICE,
+        PRODUCT_MANUFACTURER,
+        PRODUCT_ORIGIN,
+        PRODUCT_CATEGORY,
+        PRODUCT_RATING,
+        PRODUCT_VIEWCOUNT,
+        PRODUCT_IMAGE,
+        PRODUCT_REGDATE
+        FROM PRODUCT_TAB
         WHERE
         <choose>
             <when test="category == 'PRODUCTNAME'">
-                PRODUCTNAME LIKE CONCAT('%', #{keyword}, '%')
+                PRODUCT_NAME LIKE CONCAT('%', #{keyword}, '%')
             </when>
             <when test="category == 'PRODUCTORIGIN'">
-                PRODUCTORIGIN LIKE CONCAT('%', #{keyword}, '%')
+                PRODUCT_ORIGIN LIKE CONCAT('%', #{keyword}, '%')
             </when>
             <when test="category == 'PRODUCTCATEGORY'">
-                PRODUCTCATEGORY LIKE CONCAT('%', #{keyword}, '%')
+                PRODUCT_CATEGORY LIKE CONCAT('%', #{keyword}, '%')
             </when>
         </choose>
-        ORDER BY TODAY
+        ORDER BY PRODUCT_REGDATE
         LIMIT #{limit} OFFSET #{offset}
     </select>
-
+    <!--전체 물품개수-->
     <select id="countProducts" resultType="int">
-        SELECT COUNT(*) FROM PRODUCT
+        SELECT COUNT(*) FROM PRODUCT_TAB
         WHERE
         <choose>
             <when test="category == 'PRODUCTNAME'">
-                PRODUCTNAME LIKE CONCAT('%', #{keyword}, '%')
+                PRODUCT_NAME LIKE CONCAT('%', #{keyword}, '%')
             </when>
             <when test="category == 'PRODUCTORIGIN'">
-                PRODUCTORIGIN LIKE CONCAT('%', #{keyword}, '%')
+                PRODUCT_ORIGIN LIKE CONCAT('%', #{keyword}, '%')
             </when>
             <when test="category == 'PRODUCTCATEGORY'">
-                PRODUCTCATEGORY LIKE CONCAT('%', #{keyword}, '%')
+                PRODUCT_CATEGORY LIKE CONCAT('%', #{keyword}, '%')
             </when>
         </choose>
     </select>
+    <!--인기 물품 상위 10개-->
+    <select id="findBestProducts" resultType="com.project.boot.product.domain.ProductVo">
+        SELECT
+            PRODUCT_NO,
+            PRODUCT_NAME,
+            PRODUCT_PRICE,
+            PRODUCT_MANUFACTURER,
+            PRODUCT_ORIGIN,
+            PRODUCT_CATEGORY,
+            PRODUCT_RATING,
+            PRODUCT_VIEWCOUNT,
+            PRODUCT_IMAGE,
+            PRODUCT_REGDATE
+        FROM PRODUCT_TAB
+        ORDER BY PRODUCT_RATING
+        DESC LIMIT 10;
+    </select>
+    <!--상세보기 페이지-->
+    <select id="findProductInfo" resultType="com.project.boot.product.domain.ProductVo">
+        SELECT *
+        FROM PRODUCT_TAB
+        WHERE PRODUCT_NO = #{productNo}
+    </select>
+
 </mapper>

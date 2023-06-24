@@ -17,15 +17,16 @@ public class ProductService {
     public List<ProductVo> findProductsByPage(int page, int pageSize, String category, String keyword) {
         int offset = (page - 1) * pageSize;
         List<ProductVo> productList = productMapper.findProductsByPage(offset, pageSize, category, keyword);
-        System.out.println("ProductService.findProductsByPage");
-        System.out.println("offset = " + offset);
-        System.out.println("page = " + page);
-        System.out.println("pageSize = " + pageSize);
-        System.out.println("category = " + category);
-        System.out.println("keyword = " + keyword);
         return productList;
     }
     public int countProducts(String category, String keyword){
         return productMapper.countProducts(category, keyword);
+    }
+    public List<ProductVo> findBestProducts(){
+        List<ProductVo>productList= productMapper.findBestProducts();
+        return productList;
+    }
+    public List<ProductVo> findProductInfo(int productNo){
+        return productMapper.findProductInfo(productNo);
     }
 }

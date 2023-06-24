@@ -1,0 +1,15 @@
+.product-info-container {
+    display: flex;
+}
+
+.product-info-image {
+    width: 500px;
+    height: 500px;
+    margin-right: 20px;
+}
+
+.product-info-details {
+    display: flex;
+    flex-direction: column;
+    font-size: 30px;
+}

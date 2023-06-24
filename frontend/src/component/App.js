@@ -13,7 +13,7 @@ import BoardList from './BoardList';
 import '../App.css';
 import ProductAdd from "./ProductAdd";
 import BoardAdd from "./BoardAdd";
-
+import ProductInfo from './ProductInfo';
 function App() {
     return (
         <Router>
@@ -30,6 +30,7 @@ function App() {
                         <Route path="/boardList" element={<BoardList/>}/>
                         <Route path="/productAdd" element={<ProductAdd/>}/>
                         <Route path="/boardAdd" element={<BoardAdd/>}/>
+                        <Route path="/productInfo/:productNo" element={<ProductInfo />} />
                     </Routes>
                 </main>
             </div>

@@ -100,18 +100,46 @@ const ProductList = () => {
 
         return buttons;
     };
+    const handleProductClick = (product) => {
+        navigate(`/productInfo/${product.product_no}`);
+    };
 
     const createGrid = () => {
-        return productList.map((product, index) => (
-            <div className="grid-item" key={index}>
-                <div className="product-name">Product Name: {product.productname}</div>
-                <div className="product-origin">Product Origin: {product.productorigin}</div>
-                <div className="product-price">Product Price: {product.productprice}</div>
-                <div className="product-category">Product Category: {product.productcategory}</div>
-                <div className="product-today">Today: {product.today}</div>
-            </div>
-        ));
+        return productList.map((product, index) => {
+            const rating = product.product_rating; // 제품의 평점
+            const filledStars = Math.floor(rating); // 채워진 별 아이콘 개수
+            const halfStar = rating - filledStars === 0.5; // 절반 별 아이콘 여부
+
+            const stars = [];
+            for (let i = 0; i < filledStars; i++) {
+                stars.push(<span key={i} className="star-icon">⭐️</span>);
+            }
+            if (halfStar) {
+                stars.push(<span key={filledStars} className="star-icon">⭐️</span>);
+            }
+
+            const emptyStars = 5 - stars.length;
+            for (let i = 0; i < emptyStars; i++) {
+                stars.push(<span key={filledStars + i} className="star-icon">☆</span>);
+            }
+
+            return (
+                <div className="grid-item" key={index}>
+                    <img className="product-image" src={product.product_image} onClick={() => handleProductClick(product)} />
+                    <div className="product-name" onClick={() => handleProductClick(product)}>
+                        {product.product_name}
+                    </div>
+                    <div className="product-price">{product.product_price}원</div>
+                    <div className="product-rating">{stars}</div>
+                    <div className="product-viewcount">조회수: {product.product_viewcount}</div>
+                </div>
+            );
+        });
     };
+
+
+
+
 
     const handleProductAdd = () => {
         // Use navigate function to navigate to '/product/add' path
@@ -124,9 +152,9 @@ const ProductList = () => {
             <h2>전체 물품 목록</h2>
             <div className="search">
                 <select value={searchCategory} onChange={handleCategoryChange}>
-                    <option value="PRODUCTNAME">Product Name</option>
-                    <option value="PRODUCTORIGIN">Product Origin</option>
-                    <option value="PRODUCTCATEGORY">Product Category</option>
+                    <option value="PRODUCTNAME">이름</option>
+                    <option value="PRODUCTORIGIN">원산지</option>
+                    <option value="PRODUCTCATEGORY">카테고리</option>
                 </select>
                 <input type="text" value={searchKeyword} onChange={handleKeywordChange} onKeyPress={handleKeywordKeyPress} />
                 <button onClick={handleSearch}>검색</button>
