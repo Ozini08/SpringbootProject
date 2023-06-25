@@ -1,16 +1,55 @@
-import React, { useState } from 'react';
-import '../styles/BoardList.css'; // CSS 파일을 import 해주세요.
+import React, { useEffect, useState } from 'react';
+import '../styles/BoardList.css';
 import { useNavigate } from 'react-router-dom';
-const BoardList = () => {
-    const boardData = [
-        { id: 1, title: '첫 번째 게시물', author: '홍길동', date: '2023-06-21', views: 10, likes: 5 },
-        { id: 2, title: '두 번째 게시물', author: '김철수', date: '2023-06-22', views: 5, likes: 3 },
-        // ... 나머지 게시물 데이터
-    ];
+import axios from 'axios';
 
-    const [searchCategory, setSearchCategory] = useState('제목');
+const BoardList = () => {
+    const [boardList, setBoardList] = useState([]);
+    const [currentPage, setCurrentPage] = useState(1);
+    const [searchCategory, setSearchCategory] = useState('BOARDTITLE');
     const [searchKeyword, setSearchKeyword] = useState('');
+    const [totalDataCount, setTotalDataCount] = useState(0);
+    const itemsPerPage = 10;
+    const pageButtonCount = 5;
     const navigate = useNavigate();
+
+    useEffect(() => {
+        fetchBoardsByPage(1);
+    }, []);
+
+    const fetchBoardsByPage = (page) => {
+        axios
+            .get('/api/boardList', {
+                params: {
+                    page: page,
+                    pageSize: itemsPerPage,
+                    category: searchCategory,
+                    keyword: searchKeyword,
+                },
+            })
+            .then((response) => {
+                console.log(response.data);
+                const boardList = response.data[0]; // 받아오는 리스트
+                const totalCount = response.data[1]; // 받아오는 리스트 개수
+                console.log(boardList);
+                console.log(totalCount);
+                setBoardList(boardList);
+                setTotalDataCount(totalCount);
+                setCurrentPage(page);
+            })
+            .catch((error) => console.log(error));
+    };
+
+    const handleRefresh = () => {
+        setSearchCategory('BOARDTITLE'); // 카테고리 선택창 초기화
+        setSearchKeyword(''); // 검색창 초기화
+        fetchBoardsByPage(1); // 1페이지로 이동
+    };
+
+    const handlePageChange = (page) => {
+        fetchBoardsByPage(page);
+    };
+
     const handleSearchCategoryChange = (e) => {
         setSearchCategory(e.target.value);
     };
@@ -20,12 +59,85 @@ const BoardList = () => {
     };
 
     const handleSearch = () => {
-        // 검색 로직 구현
+        fetchBoardsByPage(1);
     };
 
     const handleWrite = () => {
-        // 글쓰기 버튼 클릭 시 동작할 로직 구현
         navigate('/boardAdd');
+    };
+    const handleKeywordKeyPress = (e) => {
+        if (e.key === 'Enter') {
+            handleSearch();
+        }
+    };
+    const renderPageButtons = () => {
+        const pageCount = Math.ceil(totalDataCount / itemsPerPage);
+        const buttons = [];
+        let startPage = 1;
+        let endPage = pageCount;
+
+        if (pageCount > pageButtonCount) {
+            const halfButtonCount = Math.floor(pageButtonCount / 2);
+            startPage = Math.max(currentPage - halfButtonCount, 1);
+            endPage = startPage + pageButtonCount - 1;
+
+            if (endPage > pageCount) {
+                endPage = pageCount;
+                startPage = endPage - pageButtonCount + 1;
+            }
+        }
+
+        buttons.push(
+            <button
+                key="first"
+                className={currentPage === 1 ? 'disabled' : ''}
+                onClick={() => handlePageChange(1)}
+            >
+                처음
+            </button>
+        );
+        buttons.push(
+            <button
+                key="prev"
+                className={currentPage === 1 ? 'disabled' : ''}
+                onClick={() => handlePageChange(currentPage - 1)}
+            >
+                이전
+            </button>
+        );
+
+        for (let i = startPage; i <= endPage; i++) {
+            buttons.push(
+                <button
+                    key={i}
+                    className={currentPage === i ? 'active' : ''}
+                    onClick={() => handlePageChange(i)}
+                >
+                    {i}
+                </button>
+            );
+        }
+
+        buttons.push(
+            <button
+                key="next"
+                className={currentPage === pageCount ? 'disabled' : ''}
+                onClick={() => handlePageChange(currentPage + 1)}
+            >
+                다음
+            </button>
+        );
+        buttons.push(
+            <button
+                key="last"
+                className={currentPage === pageCount ? 'disabled' : ''}
+                onClick={() => handlePageChange(pageCount)}
+            >
+                마지막
+            </button>
+        );
+
+        return buttons;
     };
 
     return (
@@ -33,46 +145,52 @@ const BoardList = () => {
             <h2>게시판 목록</h2>
             <div className="board-header">
                 <div className="board-search">
-                    <select value={searchCategory} onChange={handleSearchCategoryChange}>
-                        <option value="제목">제목</option>
-                        <option value="글쓴이">글쓴이</option>
-                        <option value="내용">내용</option>
-                        {/* 추가적인 카테고리 옵션 추가 */}
+                    <select
+                        value={searchCategory}
+                        onChange={handleSearchCategoryChange}
+                    >
+                        <option value="BOARDTITLE">제목</option>
+                        <option value="BOARDWRITER">작성자</option>
+                        <option value="BOARDCONTENT">내용</option>
                     </select>
                     <input
                         type="text"
                         value={searchKeyword}
                         onChange={handleSearchKeywordChange}
-                        placeholder="검색어를 입력하세요"
+                        onKeyPress={handleKeywordKeyPress}
                     />
                     <button onClick={handleSearch}>검색</button>
+                    <button onClick={handleRefresh}>새로고침</button>
                 </div>
-                <button className="write-button" onClick={handleWrite}>글쓰기</button>
+                <div className="board-buttons">
+                    <button onClick={handleWrite}>글쓰기</button>
+                </div>
             </div>
-            <table className="board-table">
-                <thead>
-                <tr>
-                    <th>번호</th>
-                    <th>제목</th>
-                    <th>글쓴이</th>
-                    <th>등록일</th>
-                    <th>조회</th>
-                    <th>추천</th>
-                </tr>
-                </thead>
-                <tbody>
-                {boardData.map((board) => (
-                    <tr key={board.id}>
-                        <td>{board.id}</td>
-                        <td>{board.title}</td>
-                        <td>{board.author}</td>
-                        <td>{board.date}</td>
-                        <td>{board.views}</td>
-                        <td>{board.likes}</td>
+            <div className="board-table-container">
+                <table className="board-table">
+                    <thead>
+                    <tr>
+                        <th>번호</th>
+                        <th>제목</th>
+                        <th>작성자</th>
+                        <th>작성일</th>
                     </tr>
-                ))}
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                    {boardList.map((board) => (
+                        <tr key={board.board_no}>
+                            <td>{board.board_no}</td>
+                            <td>{board.board_title}</td>
+                            <td>{board.board_writer}</td>
+                            <td>{board.board_writtendate}</td>
+                        </tr>
+                    ))}
+                    </tbody>
+                </table>
+            </div>
+            <div className="pagination">
+                {renderPageButtons()}
+            </div>
         </div>
     );
 };

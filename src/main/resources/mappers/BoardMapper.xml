@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.project.boot.board.dao.BoardMapper">
+    <select id="findBoard" resultType="com.project.boot.board.domain.BoardVo">
+        SELECT BOARD_NO,
+        BOARD_TITLE,
+        BOARD_CONTENT,
+        BOARD_WRITER,
+        BOARD_WRITTENDATE,
+        BOARD_VIEWCOUNT,
+        BOARD_RECOMMENDCOUNT
+        FROM BOARD_TAB
+        <where>
+            <choose>
+                <when test="category == 'BOARDTITLE'">
+                    BOARD_TITLE LIKE CONCAT('%', #{keyword}, '%')
+                </when>
+                <when test="category == 'BOARDCONTENT'">
+                    BOARD_CONTENT LIKE CONCAT('%', #{keyword}, '%')
+                </when>
+                <when test="category == 'BOARDWRITER'">
+                    BOARD_WRITER LIKE CONCAT('%', #{keyword}, '%')
+                </when>
+            </choose>
+        </where>
+        ORDER BY BOARD_WRITTENDATE
+        LIMIT #{limit} OFFSET #{offset}
+    </select>
+    <select id="countBoard" resultType="int">
+        SELECT COUNT(*) FROM BOARD_TAB
+        <where>
+            <choose>
+                <when test="category == 'BOARDTITLE'">
+                    BOARD_TITLE LIKE CONCAT('%', #{keyword}, '%')
+                </when>
+                <when test="category == 'BOARDCONTENT'">
+                    BOARD_CONTENT LIKE CONCAT('%', #{keyword}, '%')
+                </when>
+                <when test="category == 'BOARDWRITER'">
+                    BOARD_WRITER LIKE CONCAT('%', #{keyword}, '%')
+                </when>
+            </choose>
+        </where>
+    </select>
+</mapper>

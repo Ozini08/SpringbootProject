@@ -1,4 +1,4 @@
-package com.project.boot.product.config;
+package com.project.boot.config;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Configuration;

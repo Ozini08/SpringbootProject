@@ -53,7 +53,7 @@ const BestList = () => {
                     </div>
                     <div className="product-price">{product.product_price}원</div>
                     <div className="product-rating">{stars}</div>
-                    <div className="product-viewcount">조회수: {product.product_viewcount}</div>
+                    <div className="product-viewcount">조회수 {product.product_viewcount}</div>
                 </div>
             );
         });

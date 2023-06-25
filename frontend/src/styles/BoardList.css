@@ -1,67 +1,71 @@
-/* BoardList.css */
-
-/* 전체 컨테이너 스타일 */
-.board-container {
-    /*background-color: black;*/
+.board-table-container {
+    /*overflow-x: auto;*/
+    margin-top: 20px;
 }
 
-/* 테이블 스타일 */
 .board-table {
-    width: 100%;
+    width: 130%;
     border-collapse: collapse;
+    text-align: center;
 }
 
-/* 테이블 헤더 스타일 */
-.board-table thead {
-    background-color: lightgrey;
+.board-table th,
+.board-table td {
+    padding: 12px;
+    border-bottom: 1px solid #ddd;
 }
 
 .board-table th {
-    font-family: '나눔고딕', sans-serif;
-    font-weight: bold;
-    text-align: center; /* 가로 중앙 정렬 */
-    padding: 12px;
+    background-color: #f5f5f5;
+    color: #333;
+    font-weight: 600;
+    text-align: center;
 }
 
-/* 테이블 데이터 스타일 */
-.board-table td {
-    font-family: '나눔고딕', sans-serif;
-    text-align: center; /* 가로 중앙 정렬 */
-    padding: 12px;
-    background-color: white;
+.board-table tbody tr:hover {
+    background-color: #f5f5f5;
 }
 
-/* 번호 열 스타일 */
-.board-table td:first-child {
-    width: 60px;
+.board-table tbody tr td {
+    max-width: 300px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
-/* 제목 열 스타일 */
-.board-table td:nth-child(2) {
-    width: 400px;
+.pagination {
+    margin-top: 20px;
+    text-align: center;
 }
 
-/* 글쓴이 열 스타일 */
-.board-table td:nth-child(3) {
-    width: 120px;
+.pagination button {
+    display: inline-block;
+    padding: 8px 12px;
+    margin: 0 4px;
+    background-color: #f5f5f5;
+    border: 1px solid #ddd;
+    color: #333;
+    cursor: pointer;
+    transition: background-color 0.3s;
 }
 
-/* 등록일 열 스타일 */
-.board-table td:nth-child(4) {
-    width: 120px;
-}
+/*.pagination button:hover {*/
+/*    background-color: #ddd;*/
+/*}*/
 
-/* 조회 열 스타일 */
-.board-table td:nth-child(5) {
-    width: 80px;
-}
+/*.pagination button.active {*/
+/*    background-color: #007bff;*/
+/*    border-color: #007bff;*/
+/*    color: #fff;*/
+/*}*/
 
-/* 추천 열 스타일 */
-.board-table td:nth-child(6) {
-    width: 80px;
-}
+/*.pagination button.disabled {*/
+/*    background-color: #f5f5f5;*/
+/*    border-color: #ddd;*/
+/*    color: #bbb;*/
+/*    cursor: not-allowed;*/
+/*}*/
 
-/* 검색 및 카테고리 스타일 */
 .board-header {
     display: flex;
     justify-content: space-between;
@@ -69,25 +73,45 @@
     margin-bottom: 20px;
 }
 
-.board-search {
-    display: flex;
-    align-items: center;
-    gap: 10px;
+.board-buttons button {
+    padding: 8px 12px;
+    /*background-color: #007bff;*/
+    border: none;
+    /*color: #fff;*/
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.board-buttons button:hover {
+    background-color: gray;
 }
 
 .board-search select,
-.board-search input,
-.board-search button {
-    padding: 5px;
-    font-size: 14px;
-    border: 1px solid #ccc;
+.board-search input {
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    margin-right: 8px;
 }
 
-.write-button {
-    font-family: '나눔고딕', sans-serif;
-    font-size: 14px;
-    padding: 5px 16px;
-    background-color: powderblue;
-    border: none;
+.board-search button {
+    padding: 8px 12px;
+    background-color: #f5f5f5;
+    border: 1px solid #ddd;
+    color: #333;
     cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.board-search button:hover {
+    background-color: #ddd;
+}
+
+.board-search input[type='text'] {
+    width: 200px;
+}
+
+.disabled {
+    pointer-events: none;
+    opacity: 0.6;
 }

@@ -16,36 +16,38 @@
         PRODUCT_IMAGE,
         PRODUCT_REGDATE
         FROM PRODUCT_TAB
-        WHERE
-        <choose>
-            <when test="category == 'PRODUCTNAME'">
-                PRODUCT_NAME LIKE CONCAT('%', #{keyword}, '%')
-            </when>
-            <when test="category == 'PRODUCTORIGIN'">
-                PRODUCT_ORIGIN LIKE CONCAT('%', #{keyword}, '%')
-            </when>
-            <when test="category == 'PRODUCTCATEGORY'">
-                PRODUCT_CATEGORY LIKE CONCAT('%', #{keyword}, '%')
-            </when>
-        </choose>
+        <where>
+            <choose>
+                <when test="category == 'PRODUCTNAME'">
+                    PRODUCT_NAME LIKE CONCAT('%', #{keyword}, '%')
+                </when>
+                <when test="category == 'PRODUCTORIGIN'">
+                    PRODUCT_ORIGIN LIKE CONCAT('%', #{keyword}, '%')
+                </when>
+                <when test="category == 'PRODUCTCATEGORY'">
+                    PRODUCT_CATEGORY LIKE CONCAT('%', #{keyword}, '%')
+                </when>
+            </choose>
+        </where>
         ORDER BY PRODUCT_REGDATE
         LIMIT #{limit} OFFSET #{offset}
     </select>
     <!--전체 물품개수-->
     <select id="countProducts" resultType="int">
         SELECT COUNT(*) FROM PRODUCT_TAB
-        WHERE
-        <choose>
-            <when test="category == 'PRODUCTNAME'">
-                PRODUCT_NAME LIKE CONCAT('%', #{keyword}, '%')
-            </when>
-            <when test="category == 'PRODUCTORIGIN'">
-                PRODUCT_ORIGIN LIKE CONCAT('%', #{keyword}, '%')
-            </when>
-            <when test="category == 'PRODUCTCATEGORY'">
-                PRODUCT_CATEGORY LIKE CONCAT('%', #{keyword}, '%')
-            </when>
-        </choose>
+        <where>
+            <choose>
+                <when test="category == 'PRODUCTNAME'">
+                    PRODUCT_NAME LIKE CONCAT('%', #{keyword}, '%')
+                </when>
+                <when test="category == 'PRODUCTORIGIN'">
+                    PRODUCT_ORIGIN LIKE CONCAT('%', #{keyword}, '%')
+                </when>
+                <when test="category == 'PRODUCTCATEGORY'">
+                    PRODUCT_CATEGORY LIKE CONCAT('%', #{keyword}, '%')
+                </when>
+            </choose>
+        </where>
     </select>
     <!--인기 물품 상위 10개-->
     <select id="findBestProducts" resultType="com.project.boot.product.domain.ProductVo">
