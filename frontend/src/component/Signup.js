@@ -1,14 +1,16 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useLayoutEffect, useState} from 'react';
 import '../styles/GlobalStyles.css';
 import axios from "axios";
 const Signup = () => {
     const [hello, setHello] = useState('');
 
-    useEffect(() => {
+    useLayoutEffect(() => {
         axios
             .get('/api/hello')
             .then((response) => setHello(response.data))
             .catch((error) => console.log(error));
+        const titleElement = document.getElementsByTagName("title")[0];
+        titleElement.innerHTML = '회원가입';
     }, []);
     return (
         <div>

@@ -1,7 +1,7 @@
 import axios from 'axios';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import React, {useEffect, useState} from 'react';
-import {BrowserRouter as Router, Route, Routes} from 'react-router-dom';
+import {BrowserRouter as Router, Link, Route, Routes} from 'react-router-dom';
 import Header from './Header';
 import Sidebar from './Sidebar';
 import Home from './Home';
@@ -14,6 +14,7 @@ import '../App.css';
 import ProductAdd from "./ProductAdd";
 import BoardAdd from "./BoardAdd";
 import ProductInfo from './ProductInfo';
+import ProductModify from "./ProductModify";
 function App() {
     return (
         <Router>
@@ -31,7 +32,9 @@ function App() {
                         <Route path="/productAdd" element={<ProductAdd/>}/>
                         <Route path="/boardAdd" element={<BoardAdd/>}/>
                         <Route path="/productInfo/:productNo" element={<ProductInfo />} />
+                        <Route path="/productModify/:productNo" element = {<ProductModify/>}></Route>
                     </Routes>
+                    <Link to="/productInfo/:productNo"></Link>
                 </main>
             </div>
         </Router>

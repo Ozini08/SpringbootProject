@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, {useEffect, useLayoutEffect, useState} from 'react';
 import '../styles/BoardList.css';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
@@ -13,8 +13,10 @@ const BoardList = () => {
     const pageButtonCount = 5;
     const navigate = useNavigate();
 
-    useEffect(() => {
+    useLayoutEffect(() => {
         fetchBoardsByPage(1);
+        const titleElement = document.getElementsByTagName("title")[0];
+        titleElement.innerHTML = '게시판목록';
     }, []);
 
     const fetchBoardsByPage = (page) => {
@@ -174,6 +176,7 @@ const BoardList = () => {
                         <th>제목</th>
                         <th>작성자</th>
                         <th>작성일</th>
+                        <th>조회수</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -183,6 +186,7 @@ const BoardList = () => {
                             <td>{board.board_title}</td>
                             <td>{board.board_writer}</td>
                             <td>{board.board_writtendate}</td>
+                            <td>{board.board_viewcount}</td>
                         </tr>
                     ))}
                     </tbody>

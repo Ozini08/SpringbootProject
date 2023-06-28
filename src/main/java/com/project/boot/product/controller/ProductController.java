@@ -1,21 +1,24 @@
 package com.project.boot.product.controller;
 
+import com.project.boot.product.domain.ProductAddList;
 import com.project.boot.product.domain.ProductVo;
 import com.project.boot.product.service.ProductService;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.web.multipart.MultipartFile;
+
+
 @RestController
 public class ProductController {
     @Autowired
     private ProductService productService;
     private static final Logger logger = LoggerFactory.getLogger(ProductController.class);
+
     @GetMapping("/api/productList")
     public List<Object> findProductsByPage(
             @RequestParam(defaultValue = "1") int page,
@@ -40,7 +43,54 @@ public class ProductController {
     @GetMapping("/api/productInfo/{productNo}")
     public List<ProductVo> findProductInfo(@PathVariable int productNo) {
         List<ProductVo> product = productService.findProductInfo(productNo);
-        logger.info("productNo = {}, prolist = {}", productNo, product);
+        System.out.println("product = " + product);
         return product;
+    }
+
+    @PostMapping("/api/productAdd")
+    public void productAdd(
+            @ModelAttribute ProductAddList productAddList
+    ) {
+        MultipartFile file = productAddList.getFile();
+        String imageName = productAddList.getImageName();
+        String title = productAddList.getTitle();
+        int price = productAddList.getPrice();
+        String manufacturer = productAddList.getManufacturer();
+        String category = productAddList.getCategory();
+        String origin = productAddList.getOrigin();
+        productService.productAdd(file, title, price, manufacturer, category, origin);
+    }
+
+    @GetMapping("/api/productDelete/{productNo}")
+    public void ProductDelete(@PathVariable int productNo) {
+        productService.ProductDelete(productNo);
+    }
+//    @PutMapping
+//    @PatchMapping
+//    @DeleteMapping
+    @PostMapping("/api/productModify")
+    public void productModify( //이미지 파일 변경하지 않은 수정할 경우
+            @RequestBody ProductVo productVo
+    ) {
+        int productNo = productVo.getProduct_no();
+        String productName = productVo.getProduct_name();
+        int productPrice = productVo.getProduct_price();
+        String productManufacturer = productVo.getProduct_manufacturer();
+        String productOrigin = productVo.getProduct_origin();
+        String productCategory = productVo.getProduct_category();
+        productService.productModify(productNo,productName,productPrice,productManufacturer,productCategory,productOrigin);
+    }
+    @PostMapping("/api/productModifyAndImage")
+    public void productModifyAndImage( // 이미지 파일 변경까지 포함하여 수정하는 경우
+            @ModelAttribute ProductAddList productAddList
+    ){
+        MultipartFile file = productAddList.getFile();
+        String title = productAddList.getTitle();
+        int no = productAddList.getNo();
+        int price = productAddList.getPrice();
+        String manufacturer = productAddList.getManufacturer();
+        String category = productAddList.getCategory();
+        String origin = productAddList.getOrigin();
+        productService.productModifyAndImage(file,title,price,manufacturer,category,origin,no);
     }
 }

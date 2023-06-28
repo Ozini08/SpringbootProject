@@ -1,6 +1,7 @@
 .board-table-container {
     /*overflow-x: auto;*/
     margin-top: 20px;
+    cursor: pointer;
 }
 
 .board-table {

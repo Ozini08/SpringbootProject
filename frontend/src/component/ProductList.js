@@ -1,8 +1,8 @@
 import axios from 'axios';
-import React, { useEffect, useState } from 'react';
+import React, {useEffect, useLayoutEffect, useState} from 'react';
 import '../styles/ProductList.css';
 import '../styles/GlobalStyles.css';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 
 const ProductList = () => {
     const [productList, setProductList] = useState([]);
@@ -14,8 +14,10 @@ const ProductList = () => {
     const pageButtonCount = 5;
     const navigate = useNavigate();
 
-    useEffect(() => {
+    useLayoutEffect(() => {
         fetchProductsByPage(1);
+        const titleElement = document.getElementsByTagName("title")[0];
+        titleElement.innerHTML = '물품목록';
     }, []);
 
     const fetchProductsByPage = (page) => {
@@ -124,7 +126,7 @@ const ProductList = () => {
             }
 
             return (
-                <div className="grid-item" key={index}>
+                <div className="grid-item" key={product.product_no}>
                     <img className="product-image" src={product.product_image} onClick={() => handleProductClick(product)} />
                     <div className="product-name" onClick={() => handleProductClick(product)}>
                         {product.product_name}

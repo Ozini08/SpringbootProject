@@ -1,5 +1,5 @@
 import axios from 'axios';
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useLayoutEffect, useState} from 'react';
 // import '../styles/ProductList.css';
 import {useNavigate} from 'react-router-dom';
 import '../styles/GlobalStyles.css';
@@ -9,8 +9,10 @@ const BestList = () => {
     const [productList, setProductList] = useState([]);
     const navigate = useNavigate();
 
-    useEffect(() => {
+    useLayoutEffect(() => {
         fetchBestProducts();
+        const titleElement = document.getElementsByTagName("title")[0];
+        titleElement.innerHTML = '인기TOP10';
     }, []);
 
     const fetchBestProducts = () => {

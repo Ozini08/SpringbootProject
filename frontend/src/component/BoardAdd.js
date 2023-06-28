@@ -11,7 +11,6 @@ const BoardAdd = () => {
         e.preventDefault();
 
         try {
-            // 게시글 추가 로직
             const response = await axios.post('/api/boardAdd', {
                 title,
                 author,

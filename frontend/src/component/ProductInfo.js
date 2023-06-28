@@ -1,15 +1,17 @@
 import '../styles/GlobalStyles.css';
-import React, { useEffect, useState } from 'react';
+import React, {useEffect, useLayoutEffect, useState} from 'react';
 import axios from 'axios';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import '../styles/ProductInfo.css';
 
 const ProductInfo = () => {
     const [product, setProduct] = useState(null);
     const { productNo } = useParams();
+    const navigate = useNavigate();
 
-    useEffect(() => {
+    useLayoutEffect(() => {
         fetchProductInfo();
+        document.title = `상세페이지`;
     }, []);
 
     const fetchProductInfo = () => {
@@ -45,6 +47,32 @@ const ProductInfo = () => {
         return <div>Loading...</div>;
     }
 
+    const handleProductDelete = () => {
+        console.log("productNO:", productNo);
+        if (window.confirm("정말 삭제하시겠습니까?")) {
+            axios
+                .get(`/api/productDelete/${productNo}`)
+                .then(() => {
+                    alert("삭제되었습니다.");
+                    navigate('/productList');
+                })
+                .catch((error) => console.log(error));
+        } else {
+            alert("취소합니다.");
+        }
+    };
+
+    const handleProductModify = () => {
+        console.log("productNAME:", product.product_name);
+        console.log("productPRICE:", product.product_price);
+        console.log("productMANUFACTURER:", product.product_manufacturer);
+        console.log("productORIGIN:", product.product_origin);
+        console.log("productCATEGORY:", product.product_category);
+        console.log("productIMAGE:", product.product_image);
+
+        navigate(`/productModify/${productNo}`);
+    };
+
     return (
         <div>
             <h2>상세 페이지</h2>
@@ -62,6 +90,11 @@ const ProductInfo = () => {
                     <div>분류: {product.product_category}</div>
                     <div>평점: {product.product_rating}</div>
                     <div>조회수: {product.product_viewcount}</div>
+                    <br /><br />
+                    <div className="product-info-modifydelete">
+                        <button onClick={handleProductModify}>수정</button>
+                        <button onClick={handleProductDelete}>삭제</button>
+                    </div>
                 </div>
             </div>
         </div>

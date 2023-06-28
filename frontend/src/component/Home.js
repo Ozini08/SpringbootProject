@@ -1,15 +1,17 @@
 import '../styles/GlobalStyles.css';
-import React, {useEffect, useState} from "react";
+import React, {useEffect, useLayoutEffect, useState} from "react";
 import axios from "axios";
 
 function Home(){
     const [hello, setHello] = useState('');
 
-    useEffect(() => {
+    useLayoutEffect(() => {
         axios
             .get('/api/hello')
             .then((response) => setHello(response.data))
             .catch((error) => console.log(error));
+        const titleElement = document.getElementsByTagName("title")[0];
+        titleElement.innerHTML = '메인페이지';
     }, []);
     return(
         <div>

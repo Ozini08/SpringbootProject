@@ -29,3 +29,12 @@
 /*.rank-icon.bronze {*/
 /*    color: #cd7f32;*/
 /*}*/
+.product-name {
+    font-weight: bold;
+    cursor : pointer;
+}
+.product-image {
+    width: 200px;
+    height: 200px;
+    cursor : pointer;
+}

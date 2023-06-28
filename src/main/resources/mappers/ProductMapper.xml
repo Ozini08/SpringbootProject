@@ -29,7 +29,7 @@
                 </when>
             </choose>
         </where>
-        ORDER BY PRODUCT_REGDATE
+        ORDER BY PRODUCT_REGDATE DESC
         LIMIT #{limit} OFFSET #{offset}
     </select>
     <!--전체 물품개수-->
@@ -72,5 +72,50 @@
         FROM PRODUCT_TAB
         WHERE PRODUCT_NO = #{productNo}
     </select>
-
+    <insert id="productAdd" parameterType="com.project.boot.board.domain.BoardVo">
+        INSERT INTO
+            PRODUCT_TAB(PRODUCT_NAME,
+                        PRODUCT_PRICE,
+                        PRODUCT_MANUFACTURER,
+                        PRODUCT_ORIGIN,
+                        PRODUCT_CATEGORY,
+                        PRODUCT_IMAGE
+                        )
+        VALUES(
+               #{title},
+               #{price},
+               #{manufacturer},
+               #{origin},
+               #{category},
+               #{imagePath}
+              )
+    </insert>
+    <delete id="productDelete" parameterType="java.lang.Integer">
+        DELETE FROM
+                   PRODUCT_TAB
+        WHERE PRODUCT_NO = #{productNo}
+    </delete>
+    <update id="productModifyAndImage" parameterType="com.project.boot.board.domain.BoardVo">
+        UPDATE
+            PRODUCT_TAB
+        SET
+            PRODUCT_IMAGE = #{imagePath},
+            PRODUCT_NAME = #{productName},
+            PRODUCT_PRICE = #{productPrice},
+            PRODUCT_MANUFACTURER = #{productManufacturer},
+            PRODUCT_CATEGORY = #{productCategory},
+            PRODUCT_ORIGIN = #{productOrigin}
+        WHERE PRODUCT_NO = #{productNo}
+    </update>
+    <update id="productModify" parameterType="com.project.boot.board.domain.BoardVo">
+        UPDATE
+            PRODUCT_TAB
+        SET
+            PRODUCT_NAME = #{productName},
+            PRODUCT_PRICE = #{productPrice},
+            PRODUCT_MANUFACTURER = #{productManufacturer},
+            PRODUCT_CATEGORY = #{productCategory},
+            PRODUCT_ORIGIN = #{productOrigin}
+        WHERE PRODUCT_NO = #{productNo}
+    </update>
 </mapper>
