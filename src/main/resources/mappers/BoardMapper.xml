@@ -43,4 +43,12 @@
             </choose>
         </where>
     </select>
+    <insert id="BoardAdd" parameterType="com.project.boot.board.domain.BoardVo">
+        INSERT INTO BOARD_TAB(BOARD_TITLE,
+                              BOARD_WRITER,
+                              BOARD_CONTENT)
+        VALUES (#{title},
+                #{writer},
+                #{content})
+    </insert>
 </mapper>

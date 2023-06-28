@@ -21,4 +21,10 @@ public interface BoardMapper{
             @Param("category") String category,
             @Param("keyword") String keyword
     );
+
+    void BoardAdd(
+            @Param("title") String title,
+            @Param("writer") String writer,
+            @Param("content") String content
+    );
 }

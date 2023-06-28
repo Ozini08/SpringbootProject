@@ -1,26 +1,25 @@
 import React, { useState } from 'react';
 import '../styles/BoardAdd.css';
 import axios from 'axios';
+import {useNavigate} from "react-router-dom";
 
 const BoardAdd = () => {
     const [title, setTitle] = useState('');
-    const [author, setAuthor] = useState('');
+    const [writer, setWriter] = useState('');
     const [content, setContent] = useState('');
-
+    const navigate = useNavigate();
     const handleSubmit = async (e) => {
         e.preventDefault();
+        const AddBoard = {
+            board_title: title,
+            board_writer: writer,
+            board_content: content
+        };
 
         try {
-            const response = await axios.post('/api/boardAdd', {
-                title,
-                author,
-                content,
-            });
-
+            const response = await axios.post('/api/boardAdd', AddBoard);
             console.log('게시글이 추가되었습니다:', response.data);
-
-            // 추가된 게시글을 목록으로 이동
-            // 예시: history.push('/board');
+            navigate('/boardList');
         } catch (error) {
             console.error('게시글 추가 실패:', error);
         }
@@ -43,12 +42,13 @@ const BoardAdd = () => {
                 </div>
 
                 <div className="form-row">
-                    <label htmlFor="author">작성자</label>
+                    <label htmlFor="writer">작성자</label>
                     <input
                         type="text"
-                        id="author"
-                        value={author}
-                        onChange={(e) => setAuthor(e.target.value)}
+                        id="writer"
+                        value={writer}
+                        onChange={(e) => setWriter(e.target.value)}
+                        // onChange={(e)=>setAuthor({...author, author : e.target.value})}
                         placeholder="작성자를 입력하세요"
                         required
                     />

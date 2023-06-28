@@ -113,7 +113,7 @@ const ProductModify = () => {
     };
 
     if (!product) {
-        return <div>Loading...</div>;
+        return ;
     }
 
     return (

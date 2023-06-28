@@ -22,4 +22,7 @@ public class BoardService {
     public int countBoard(String category, String keyword){
         return boardMapper.countBoard(category, keyword);
     }
+    public void BoardAdd(String title, String writer, String content){
+        boardMapper.BoardAdd(title,writer,content);
+    }
 }

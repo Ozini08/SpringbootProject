@@ -1,7 +1,7 @@
 import '../styles/GlobalStyles.css';
 import React, {useEffect, useLayoutEffect, useState} from 'react';
 import axios from 'axios';
-import { useNavigate, useParams } from 'react-router-dom';
+import {Link, useNavigate, useParams} from 'react-router-dom';
 import '../styles/ProductInfo.css';
 
 const ProductInfo = () => {
@@ -44,7 +44,7 @@ const ProductInfo = () => {
     };
 
     if (!product) {
-        return <div>Loading...</div>;
+        return ;
     }
 
     const handleProductDelete = () => {

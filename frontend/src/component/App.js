@@ -34,7 +34,6 @@ function App() {
                         <Route path="/productInfo/:productNo" element={<ProductInfo />} />
                         <Route path="/productModify/:productNo" element = {<ProductModify/>}></Route>
                     </Routes>
-                    <Link to="/productInfo/:productNo"></Link>
                 </main>
             </div>
         </Router>

@@ -7,9 +7,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,5 +32,18 @@ public class BoardController {
         int countList = boardService.countBoard(category, keyword);
         list.add(countList);
         return list;
+    }
+
+    @PostMapping("/api/boardAdd")
+    public void BoardAdd(
+            @RequestBody BoardVo boardVo
+    ){
+        String title = boardVo.getBoard_title();
+        String writer = boardVo.getBoard_writer();
+        String content = boardVo.getBoard_content();
+        logger.info("title:{}",title);
+        logger.info("writer:{}",writer);
+        logger.info("content:{}",content);
+        boardService.BoardAdd(title,writer,content);
     }
 }
