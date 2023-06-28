@@ -1,0 +1,12 @@
+.text-content{
+    height: 300px;
+    width: 500px;
+    vertical-align : top;
+}
+.text-title{
+    margin-left: -355px;
+    width: 250px;
+}
+.text-writer{
+    width: 250px;
+}

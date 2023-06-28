@@ -32,10 +32,13 @@
 }
 
 button[type='submit'] {
-    font-family: '나눔고딕', sans-serif;
-    font-size: 14px;
-    padding: 5px 16px;
-    background-color: powderblue;
+    padding: 8px 12px;
+    /*background-color: #007bff;*/
     border: none;
+    /*color: #fff;*/
     cursor: pointer;
+    transition: background-color 0.3s;
+}
+.form-container button:hover{
+    background-color: #ddd;
 }

@@ -76,7 +76,7 @@ public class ProductService {
         return "";
     }
 
-    public void ProductDelete(int productNo) {
+    public void productDelete(int productNo) {
         productMapper.productDelete(productNo);
     }
 

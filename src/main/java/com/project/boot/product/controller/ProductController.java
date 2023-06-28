@@ -62,8 +62,8 @@ public class ProductController {
     }
 
     @GetMapping("/api/productDelete/{productNo}")
-    public void ProductDelete(@PathVariable int productNo) {
-        productService.ProductDelete(productNo);
+    public void productDelete(@PathVariable int productNo) {
+        productService.productDelete(productNo);
     }
 //    @PutMapping
 //    @PatchMapping

@@ -22,7 +22,19 @@ public class BoardService {
     public int countBoard(String category, String keyword){
         return boardMapper.countBoard(category, keyword);
     }
-    public void BoardAdd(String title, String writer, String content){
-        boardMapper.BoardAdd(title,writer,content);
+    public void boardAdd(String title, String writer, String content){
+        boardMapper.boardAdd(title,writer,content);
+    }
+
+    public void boardDelete(int boardNo) {
+        boardMapper.boardDelete(boardNo);
+    }
+
+    public void boardModify(int no, String title, String writer, String content) {
+        boardMapper.boardModify(no,title,writer,content);
+    }
+
+    public List<BoardVo> findBoardInfo(int boardNo) {
+        return boardMapper.findBoardInfo(boardNo);
     }
 }

@@ -22,9 +22,23 @@ public interface BoardMapper{
             @Param("keyword") String keyword
     );
 
-    void BoardAdd(
+    void boardAdd(
             @Param("title") String title,
             @Param("writer") String writer,
             @Param("content") String content
     );
+
+    void boardDelete(
+            @Param("boardNo") int boardNo
+    );
+
+
+    void boardModify(
+            @Param("no") int no,
+            @Param("title") String title,
+            @Param("writer") String writer,
+            @Param("content") String content
+    );
+
+    List<BoardVo> findBoardInfo(int boardNo);
 }

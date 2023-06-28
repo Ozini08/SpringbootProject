@@ -33,9 +33,13 @@ public class BoardController {
         list.add(countList);
         return list;
     }
-
+    @GetMapping("/api/boardInfo/{boardNo}")
+    public List<BoardVo> findBoardInfo(@PathVariable int boardNo){
+        List<BoardVo> board = boardService.findBoardInfo(boardNo);
+        return board;
+    }
     @PostMapping("/api/boardAdd")
-    public void BoardAdd(
+    public void boardAdd(
             @RequestBody BoardVo boardVo
     ){
         String title = boardVo.getBoard_title();
@@ -44,6 +48,21 @@ public class BoardController {
         logger.info("title:{}",title);
         logger.info("writer:{}",writer);
         logger.info("content:{}",content);
-        boardService.BoardAdd(title,writer,content);
+        boardService.boardAdd(title,writer,content);
+    }
+    @GetMapping("/api/boardDelete/{boardNo}")
+    public void boardDelete(@PathVariable int boardNo){
+        boardService.boardDelete(boardNo);
+    }
+    
+    @PostMapping("/api/boardModify")
+    public void boardModify(
+            @RequestBody BoardVo boardVo
+    ){
+        int no = boardVo.getBoard_no();
+        String title = boardVo.getBoard_title();
+        String writer = boardVo.getBoard_writer();
+        String content = boardVo.getBoard_content();
+        boardService.boardModify(no,title,writer,content);
     }
 }
