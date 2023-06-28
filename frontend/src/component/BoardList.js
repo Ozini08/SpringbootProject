@@ -183,7 +183,7 @@ const BoardList = () => {
                     </tr>
                     </thead>
                     <tbody>
-                    {boardList.map((board) => (
+                    {boardList.map((board, index) => (
                         <tr key={board.board_no} onClick={()=>handleBoardClick(board)}>
                             <td>{board.board_no}</td>
                             <td>{board.board_title}</td>
