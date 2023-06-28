@@ -22,4 +22,5 @@ router 사용해서 페이지 간 이동할 수 있도록 세팅
 <img width="1470" alt="스크린샷 2023-06-29 오전 3 48 31" src="https://github.com/Ozini08/SpringbootProject/assets/111555414/b9963173-1536-40b7-a431-9279bfb64893">
 <img width="1470" alt="스크린샷 2023-06-29 오전 3 48 59" src="https://github.com/Ozini08/SpringbootProject/assets/111555414/0372e86a-6b6d-4e04-8e82-59f0df829f05">
 
-23.06.29 게시판 글 추가,삭제,수정 기능 구현
+23.06.29 게시판 글 상세보기 및 추가,삭제,수정 기능 구현
+<img width="1470" alt="스크린샷 2023-06-29 오전 3 51 51" src="https://github.com/Ozini08/SpringbootProject/assets/111555414/30b3fce4-5def-463e-9573-d777565aba76">
