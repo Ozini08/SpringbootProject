@@ -17,6 +17,12 @@ function Header(){
                         <Link to="/mypage">마이페이지</Link>
                     </li>
                     <li className="header-right">
+                        <Link to="/signin">로그인</Link>
+                    </li>
+                    <li className="header-right">
+                        <Link to="/logout">로그아웃</Link>
+                    </li>
+                    <li className="header-right">
                         <Link to="/signup">회원가입</Link>
                     </li>
                 </ul>

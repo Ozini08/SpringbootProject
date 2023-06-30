@@ -18,6 +18,9 @@ import BoardAdd from "../component/BoardAdd";
 import BoardInfo from "../component/BoardInfo";
 import BoardModify from "../component/BoardModify";
 import BoardList from "../component/BoardList";
+import Signin from "./Signin";
+import FindIdPassword from "./FindIdPassword";
+import Logout from "./Logout";
 
 function App() {
     return (<Router>
@@ -27,16 +30,22 @@ function App() {
             <main>
                 <Routes>
                     <Route path="/" element={<Home/>}/>
+                    {/*-------------UserPage--------------------*/}
                     <Route path="/mypage" element={<Mypage/>}/>
+                    <Route path="/signin" element={<Signin/>}/>
                     <Route path="/signup" element={<Signup/>}/>
+                    <Route path="/logout" element={<Logout/>} />
+                    <Route path="/findIdPassword" element={<FindIdPassword/>}/>
+                    {/*-------------ProductPage--------------------*/}
                     <Route path="/bestList" element={<BestList/>}/>
                     <Route path="/productList" element={<ProductList/>}/>
                     <Route path="/productAdd" element={<ProductAdd/>}/>
                     <Route path="/productInfo/:productNo" element={<ProductInfo/>}/>
                     <Route path="/productModify/:productNo" element={<ProductModify/>}></Route>
+                    {/*-------------BoardPage------------------------*/}
                     <Route path="/boardList" element={<BoardList/>}/>
                     <Route path="/boardAdd" element={<BoardAdd/>}/>
-                    <Route path="/boardInfo/:boardNo" element = {< BoardInfo/>}></Route>
+                    <Route path="/boardInfo/:boardNo" element={< BoardInfo/>}></Route>
                     <Route path="/boardModify/:boardNo" element={<BoardModify/>}></Route>
                 </Routes>
             </main>
