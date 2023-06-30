@@ -24,3 +24,7 @@ router 사용해서 페이지 간 이동할 수 있도록 세팅
 
 23.06.29 게시판 글 상세보기 및 추가,삭제,수정 기능 구현
 <img width="1470" alt="스크린샷 2023-06-29 오전 3 51 51" src="https://github.com/Ozini08/SpringbootProject/assets/111555414/30b3fce4-5def-463e-9573-d777565aba76">
+
+23.06.30 게시판 공감 기능 추가, 상품 페이지 별점 기능 구현
+<img width="1443" alt="image" src="https://github.com/Ozini08/SpringbootProject/assets/111555414/443fc115-7382-4dc6-b013-7961a5a16c84">
+<img width="1447" alt="image" src="https://github.com/Ozini08/SpringbootProject/assets/111555414/dcd4c850-98a6-4441-bf72-9015af36f552">
