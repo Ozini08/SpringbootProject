@@ -42,6 +42,7 @@ public class ProductController {
 
     @GetMapping("/api/productInfo/{productNo}")
     public List<ProductVo> findProductInfo(@PathVariable int productNo) {
+        productService.productViewCount(productNo);
         List<ProductVo> product = productService.findProductInfo(productNo);
         System.out.println("product = " + product);
         return product;
@@ -92,5 +93,14 @@ public class ProductController {
         String category = productAddList.getCategory();
         String origin = productAddList.getOrigin();
         productService.productModifyAndImage(file,title,price,manufacturer,category,origin,no);
+    }
+
+    @PostMapping("/api/productRating")
+    public void productRatingAdd(
+            @RequestBody ProductVo productVo
+    ){
+        int no = productVo.getProduct_no();
+        float rating = productVo.getProduct_rating();
+        productService.productRatingAdd(no, rating);
     }
 }

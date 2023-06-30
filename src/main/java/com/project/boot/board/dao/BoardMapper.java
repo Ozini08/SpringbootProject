@@ -41,4 +41,10 @@ public interface BoardMapper{
     );
 
     List<BoardVo> findBoardInfo(int boardNo);
+
+    void boardViewCount(
+            @Param("no") int no
+    );
+
+    void boardRecommend(@Param("no") int no);
 }

@@ -13,10 +13,11 @@ import ProductList from './ProductList';
 import ProductAdd from "./ProductAdd";
 import ProductInfo from './ProductInfo';
 import ProductModify from "./ProductModify";
-import BoardList from '../component/BoardList';
+import Board from "./Board"
 import BoardAdd from "../component/BoardAdd";
 import BoardInfo from "../component/BoardInfo";
 import BoardModify from "../component/BoardModify";
+import BoardList from "../component/BoardList";
 
 function App() {
     return (<Router>

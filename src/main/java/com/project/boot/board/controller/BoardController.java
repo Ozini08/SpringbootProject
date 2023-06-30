@@ -34,7 +34,10 @@ public class BoardController {
         return list;
     }
     @GetMapping("/api/boardInfo/{boardNo}")
-    public List<BoardVo> findBoardInfo(@PathVariable int boardNo){
+    public List<BoardVo> findBoardInfo(
+            @PathVariable int boardNo
+    ){
+        boardService.boardViewCount(boardNo);
         List<BoardVo> board = boardService.findBoardInfo(boardNo);
         return board;
     }
@@ -64,5 +67,13 @@ public class BoardController {
         String writer = boardVo.getBoard_writer();
         String content = boardVo.getBoard_content();
         boardService.boardModify(no,title,writer,content);
+    }
+
+    @GetMapping("/api/boardRecommend/{boardNo}")
+    public void boardRecommend(
+            @PathVariable int boardNo
+    ){
+        logger.info("NO:{}",boardNo);
+        boardService.boardRecommend(boardNo);
     }
 }

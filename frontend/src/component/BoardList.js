@@ -12,7 +12,6 @@ const BoardList = () => {
     const itemsPerPage = 10;
     const pageButtonCount = 5;
     const navigate = useNavigate();
-
     useLayoutEffect(() => {
         fetchBoardsByPage(1);
         const titleElement = document.getElementsByTagName("title")[0];

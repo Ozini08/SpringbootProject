@@ -57,35 +57,47 @@ const BoardInfo = () => {
     const handleBoardModify = () => {
         navigate(`/boardModify/${boardNo}`);
     };
+    const handleBoardRecommend = () => {
+        axios
+            .get(`/api/boardRecommend/${boardNo}`)
+            .then(() => {
+                setBoard((prevBoard) => ({
+                    ...prevBoard,
+                    board_recommendcount: prevBoard.board_recommendcount + 1
+                }));
+            })
+            .catch((error) => console.error(error));
+    };
     return (
         <div>
             <h2>게시글</h2>
             <table className="board-info-container">
                 <thead>
                 <tr>
-                    <th colSpan="2">{board.board_title}</th>
+                    <th colSpan="3">{board.board_title}</th>
                 </tr>
                 </thead>
                 <tbody>
                 <tr>
                     <td>작성자</td>
-                    <td>{board.board_writer}</td>
+                    <td colSpan="2">{board.board_writer}</td>
                 </tr>
                 <tr>
                     <td>작성일</td>
-                    <td>{board.board_writtendate}</td>
+                    <td colSpan="2">{board.board_writtendate}</td>
                 </tr>
                 <tr>
                     <td className="board-info-content"></td>
-                    <td>{board.board_content}</td>
+                    <td colSpan="2">{board.board_content}</td>
                 </tr>
                 <tr>
                     <td>조회</td>
-                    <td>{board.board_viewcount}</td>
+                    <td colSpan="2">{board.board_viewcount}</td>
                 </tr>
                 <tr>
                     <td>공감</td>
                     <td>{board.board_recommendcount}</td>
+                    <td colSpan="2"><button onClick = {handleBoardRecommend}>👍</button></td>
                 </tr>
                 </tbody>
             </table>

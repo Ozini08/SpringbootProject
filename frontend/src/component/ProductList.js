@@ -3,7 +3,8 @@ import React, {useEffect, useLayoutEffect, useState} from 'react';
 import '../styles/ProductList.css';
 import '../styles/GlobalStyles.css';
 import { useNavigate, Link } from 'react-router-dom';
-
+// import StarRatingComponent from 'react-star-rating-component';
+import Rating from 'react-rating-stars-component';
 const ProductList = () => {
     const [productList, setProductList] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
@@ -106,34 +107,52 @@ const ProductList = () => {
         navigate(`/productInfo/${product.product_no}`);
     };
 
+    // const createGrid = () => {
+    //     return productList.map((product, index) => {
+    //         return (
+    //             <div className="grid-item" key={product.product_no}>
+    //                 <img className="product-image" src={product.product_image} onClick={() => handleProductClick(product)} />
+    //                 <div className="product-name" onClick={() => handleProductClick(product)}>
+    //                     {product.product_name}
+    //                 </div>
+    //                 <div className="product-price">{product.product_price}원</div>
+    //                 <div className="product-rating">{product.product_rating}</div>
+    //                 <div className="product-viewcount">조회수 {product.product_viewcount}</div>
+    //             </div>
+    //         );
+    //     });
+    // };
     const createGrid = () => {
         return productList.map((product, index) => {
-            const rating = product.product_rating; // 제품의 평점
-            const filledStars = Math.floor(rating); // 채워진 별 아이콘 개수
-            const halfStar = rating - filledStars === 0.5; // 절반 별 아이콘 여부
-
-            const stars = [];
-            for (let i = 0; i < filledStars; i++) {
-                stars.push(<span key={i} className="star-icon">⭐️</span>);
-            }
-            if (halfStar) {
-                stars.push(<span key={filledStars} className="star-icon">⭐️</span>);
-            }
-
-            const emptyStars = 5 - stars.length;
-            for (let i = 0; i < emptyStars; i++) {
-                stars.push(<span key={filledStars + i} className="star-icon">☆</span>);
-            }
-
             return (
                 <div className="grid-item" key={product.product_no}>
-                    <img className="product-image" src={product.product_image} onClick={() => handleProductClick(product)} />
-                    <div className="product-name" onClick={() => handleProductClick(product)}>
+                    <img
+                        className="product-image"
+                        src={product.product_image}
+                        onClick={() => handleProductClick(product)}
+                    />
+                    <div
+                        className="product-name"
+                        onClick={() => handleProductClick(product)}
+                    >
                         {product.product_name}
                     </div>
                     <div className="product-price">{product.product_price}원</div>
-                    <div className="product-rating">{stars}</div>
-                    <div className="product-viewcount">조회수 {product.product_viewcount}</div>
+                    <div className="product-rating">
+                        <Rating
+                            count={5}
+                            size={18}
+                            value={product.product_rating}
+                            activeColor="#ffb400"
+                            emptyIcon={<span style={{ fontSize: '18px' }}>★</span>}
+                            halfIcon={<span style={{ fontSize: '18px' }}>✩</span>}
+                            filledIcon={<span style={{ fontSize: '18px' }}>★</span>}
+                            edit={false}
+                        />
+                    </div>
+                    <div className="product-viewcount">
+                        조회수 {product.product_viewcount}
+                    </div>
                 </div>
             );
         });

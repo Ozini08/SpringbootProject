@@ -4,17 +4,7 @@
 <mapper namespace="com.project.boot.product.dao.ProductMapper">
     <!--전체 리스트 불러오기-->
     <select id="findProductsByPage" resultType="com.project.boot.product.domain.ProductVo">
-        SELECT
-        PRODUCT_NO,
-        PRODUCT_NAME,
-        PRODUCT_PRICE,
-        PRODUCT_MANUFACTURER,
-        PRODUCT_ORIGIN,
-        PRODUCT_CATEGORY,
-        PRODUCT_RATING,
-        PRODUCT_VIEWCOUNT,
-        PRODUCT_IMAGE,
-        PRODUCT_REGDATE
+        SELECT *
         FROM PRODUCT_TAB
         <where>
             <choose>
@@ -51,17 +41,7 @@
     </select>
     <!--인기 물품 상위 10개-->
     <select id="findBestProducts" resultType="com.project.boot.product.domain.ProductVo">
-        SELECT
-            PRODUCT_NO,
-            PRODUCT_NAME,
-            PRODUCT_PRICE,
-            PRODUCT_MANUFACTURER,
-            PRODUCT_ORIGIN,
-            PRODUCT_CATEGORY,
-            PRODUCT_RATING,
-            PRODUCT_VIEWCOUNT,
-            PRODUCT_IMAGE,
-            PRODUCT_REGDATE
+        SELECT *
         FROM PRODUCT_TAB
         ORDER BY PRODUCT_RATING
         DESC LIMIT 10;
@@ -117,5 +97,32 @@
             PRODUCT_CATEGORY = #{productCategory},
             PRODUCT_ORIGIN = #{productOrigin}
         WHERE PRODUCT_NO = #{productNo}
+    </update>
+    <update id="productViewCount" parameterType="java.lang.Integer">
+        UPDATE
+            PRODUCT_TAB
+        SET
+            PRODUCT_VIEWCOUNT = PRODUCT_VIEWCOUNT +1
+        WHERE PRODUCT_NO = #{no}
+    </update>
+    <update id="productIncreaseRating">
+        UPDATE
+            PRODUCT_TAB
+        SET
+            PRODUCT_RATINGCOUNT = PRODUCT_RATINGCOUNT +1,
+            PRODUCT_RATINGSUM = PRODUCT_RATINGSUM +#{rating}
+        WHERE PRODUCT_NO = #{no}
+    </update>
+    <select id="productFindRating" resultType="com.project.boot.product.domain.ProductVo" parameterType="com.project.boot.product.domain.ProductVo">
+        SELECT *
+        FROM PRODUCT_TAB
+        WHERE PRODUCT_NO = #{no}
+    </select>
+    <update id="productUpdateRating" parameterType="com.project.boot.product.domain.ProductVo">
+        UPDATE
+            PRODUCT_TAB
+        SET
+            PRODUCT_RATING = #{ratingAvg}
+        WHERE PRODUCT_NO=#{no}
     </update>
 </mapper>

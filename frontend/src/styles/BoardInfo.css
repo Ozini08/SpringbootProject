@@ -46,3 +46,11 @@
 .button-container button:hover{
     background-color: #ddd;
 }
+
+.board-info-container tr td button{
+    border: 1px solid #ddd;
+    font-size: 30px;
+}
+.board-info-container tr td button:hover{
+    background-color: lightgrey;
+}

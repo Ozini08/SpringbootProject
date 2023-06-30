@@ -1,7 +1,10 @@
 package com.project.boot.product.service;
 
+import com.project.boot.product.controller.ProductController;
 import com.project.boot.product.dao.ProductMapper;
 import com.project.boot.product.domain.ProductVo;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -19,7 +22,7 @@ import java.util.UUID;
 public class ProductService {
     @Autowired
     private ProductMapper productMapper;
-
+    private static final Logger logger = LoggerFactory.getLogger(ProductController.class);
     public List<ProductVo> findProductsByPage(int page, int pageSize, String category, String keyword) {
         int offset = (page - 1) * pageSize;
         List<ProductVo> productList = productMapper.findProductsByPage(offset, pageSize, category, keyword);
@@ -100,6 +103,19 @@ public class ProductService {
             throw new RuntimeException("이미지 파일 저장에 실패했습니다.");
         }
         productMapper.productModifyAndImage(imagePath,productName,productPrice,productManufacturer,productCategory,productOrigin,productNo);
+    }
+
+    public void productViewCount(int no) {
+        productMapper.productViewCount(no);
+    }
+
+    public void productRatingAdd(int no, float rating) {
+        productMapper.productIncreaseRating(no,rating); //db에 rating+1, rating 값추가
+        ProductVo prevRating = productMapper.productFindRating(no);
+        int ratingCount = prevRating.getProduct_ratingcount(); //평점 개수
+        int ratingTotal = prevRating.getProduct_ratingsum(); //평점 전체 합
+        float ratingAvg = (float) ratingTotal / ratingCount; //평점의 평균
+        productMapper.productUpdateRating(no,ratingAvg);
     }
 }
 

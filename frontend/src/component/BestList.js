@@ -4,6 +4,7 @@ import React, {useEffect, useLayoutEffect, useState} from 'react';
 import {useNavigate} from 'react-router-dom';
 import '../styles/GlobalStyles.css';
 import '../styles/BestList.css';
+import Rating from "react-rating-stars-component";
 
 const BestList = () => {
     const [productList, setProductList] = useState([]);
@@ -29,23 +30,6 @@ const BestList = () => {
     };
     const createGrid = () => {
         return productList.map((product, index) => {
-            const rating = product.product_rating; // 제품의 평점
-            const filledStars = Math.floor(rating); // 채워진 별 아이콘 개수
-            const halfStar = rating - filledStars === 0.5; // 절반 별 아이콘 여부
-
-            const stars = [];
-            for (let i = 0; i < filledStars; i++) {
-                stars.push(<span key={i} className="star-icon">⭐</span>);
-            }
-            if (halfStar) {
-                stars.push(<span key={filledStars} className="star-icon">⭐</span>);
-            }
-
-            const emptyStars = 5 - stars.length;
-            for (let i = 0; i < emptyStars; i++) {
-                stars.push(<span key={filledStars + i} className="star-icon">☆</span>);
-            }
-
             return (
                 <div className="grid-item" key={index}>
                     <span className="product-number">{renderRank(index + 1)}</span>
@@ -54,7 +38,18 @@ const BestList = () => {
                         {product.product_name}
                     </div>
                     <div className="product-price">{product.product_price}원</div>
-                    <div className="product-rating">{stars}</div>
+                    <div className="product-rating">
+                        <Rating
+                            count={5}
+                            size={18}
+                            value={product.product_rating}
+                            activeColor="#ffb400"
+                            emptyIcon={<span style={{ fontSize: '18px' }}>★</span>}
+                            halfIcon={<span style={{ fontSize: '18px' }}>✩</span>}
+                            filledIcon={<span style={{ fontSize: '18px' }}>★</span>}
+                            edit={false}
+                        />
+                    </div>
                     <div className="product-viewcount">조회수 {product.product_viewcount}</div>
                 </div>
             );

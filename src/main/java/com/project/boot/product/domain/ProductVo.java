@@ -18,4 +18,6 @@ public class ProductVo {
     private int product_viewcount;
     private String product_image;
     private String product_regdate;
+    private int product_ratingcount;
+    private int product_ratingsum;
 }

@@ -57,4 +57,12 @@ public interface ProductMapper {
             @Param("productCategory") String productCategory,
             @Param("productOrigin") String productOrigin
     );
+
+    void productViewCount(@Param("no") int no);
+
+    ProductVo productFindRating(@Param("no") int no);
+
+    void productIncreaseRating(@Param("no") int no, @Param("rating") float rating);
+
+    void productUpdateRating(@Param("no")int no,@Param("ratingAvg") float ratingAvg);
 }

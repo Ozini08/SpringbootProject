@@ -70,4 +70,18 @@
             BOARD_CONTENT = #{content}
         WHERE BOARD_NO =#{no}
     </update>
+    <update id="boardViewCount" parameterType="java.lang.Integer">
+        UPDATE
+            BOARD_TAB
+        SET
+            BOARD_VIEWCOUNT = BOARD_VIEWCOUNT+1
+        WHERE BOARD_NO = #{no}
+    </update>
+    <update id="boardRecommend" parameterType="java.lang.Integer">
+        UPDATE
+            BOARD_TAB
+        SET
+            BOARD_RECOMMENDCOUNT = BOARD_RECOMMENDCOUNT+1
+        WHERE BOARD_NO = #{no}
+    </update>
 </mapper>
