@@ -30,3 +30,5 @@ router 사용해서 페이지 간 이동할 수 있도록 세팅
 <img width="1447" alt="image" src="https://github.com/Ozini08/SpringbootProject/assets/111555414/dcd4c850-98a6-4441-bf72-9015af36f552">
 
 23.07.01 회원가입, 로그인 기능 구현. 회원가입 시 아이디 중복체크.
+
+23.07.02 세션을 이용한 마이페이지 기능 구현
