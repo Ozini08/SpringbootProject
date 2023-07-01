@@ -2,6 +2,7 @@ import React, {useEffect, useLayoutEffect, useState} from 'react';
 import '../styles/GlobalStyles.css';
 import axios from "axios";
 import {useNavigate} from "react-router-dom";
+import '../styles/Signup.css';
 const Signup = () => {
     const navigate = useNavigate();
     const [id, setId] = useState('');
@@ -55,7 +56,7 @@ const Signup = () => {
     };
     return (
         <div>
-            <h2>회원가입</h2>
+            <h2 className="signup-title">회원가입</h2>
             <form className="login-container" onSubmit={handleSignup}>
                 <div>
                     <label htmlFor="id">아이디</label>

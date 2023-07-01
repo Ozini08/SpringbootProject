@@ -1,0 +1,53 @@
+/* GlobalStyles.css */
+
+.mypage-container {
+    width: 300px;
+    margin: 0 350px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f5f5f5;
+}
+.mypage-title{
+    text-align: center;
+}
+.mypage-container h2 {
+    text-align: center;
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+}
+
+.mypage-container table {
+    width: 100%;
+}
+
+.mypage-container table th {
+    text-align: center;
+    font-weight: bold;
+    color: #333;
+    padding: 10px 0;
+}
+
+.mypage-container table td {
+    padding: 8px 0;
+}
+
+.mypage-container .profile-image {
+    text-align: center;
+}
+
+.mypage-container .profile-image img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+}
+
+.mypage-container .address{
+    font-weight: bold;
+    color: #333;
+}
+.mypage-container .id{
+    font-weight: bold;
+    color: #333;
+}

@@ -2,6 +2,7 @@ package com.project.boot.user.service;
 
 import com.project.boot.board.service.BoardService;
 import com.project.boot.user.dao.UserMapper;
+import com.project.boot.user.domain.UserVo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,5 +33,10 @@ public class UserService {
 
     public void userSignUp(String id, String password, String nickname, String address) {
         userMapper.userSignUp(id,password,nickname,address);
+    }
+
+    public UserVo userFindData(String loginMember) {
+//        logger.info("id:{}", loginMember);
+        return userMapper.userFindData(loginMember);
     }
 }

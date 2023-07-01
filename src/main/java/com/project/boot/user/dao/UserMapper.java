@@ -1,5 +1,6 @@
 package com.project.boot.user.dao;
 
+import com.project.boot.user.domain.UserVo;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
@@ -20,4 +21,5 @@ public interface UserMapper {
             @Param("address") String address
     );
 
+    UserVo userFindData(@Param("id") String loginMember);
 }

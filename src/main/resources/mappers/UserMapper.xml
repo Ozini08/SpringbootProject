@@ -22,4 +22,7 @@
             FROM USER_TAB
             WHERE USER_ID = #{id}
         </select>
+    <select id="userFindData" resultType="com.project.boot.user.domain.UserVo">
+        <include refid="tableFindId"/>
+    </select>
 </mapper>

@@ -6,7 +6,7 @@ import {useNavigate} from "react-router-dom";
 const FindIdPassword=()=>{
 
     return(
-      <h2>찾기</h2>
+      <h2>아이디/비밀번호 찾기</h2>
     );
 }
 export default FindIdPassword;
