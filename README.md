@@ -28,3 +28,5 @@ router 사용해서 페이지 간 이동할 수 있도록 세팅
 23.06.30 게시판 공감 기능 추가, 상품 페이지 별점 기능 구현
 <img width="1443" alt="image" src="https://github.com/Ozini08/SpringbootProject/assets/111555414/443fc115-7382-4dc6-b013-7961a5a16c84">
 <img width="1447" alt="image" src="https://github.com/Ozini08/SpringbootProject/assets/111555414/dcd4c850-98a6-4441-bf72-9015af36f552">
+
+23.07.01 회원가입, 로그인 기능 구현. 회원가입 시 아이디 중복체크.
