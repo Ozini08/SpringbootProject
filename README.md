@@ -36,3 +36,6 @@ router 사용해서 페이지 간 이동할 수 있도록 세팅
 
 23.07.02 세션을 이용한 마이페이지 기능 구현
 ![image](https://github.com/Ozini08/SpringbootProject/assets/111555414/5c0f611a-2c9a-4eff-8d9f-926cb7fa03cc)
+
+23.07.03 MUI를 이용한 BarChart 구현 - 전체상품 등록개수(년/월), ChartJS를 이용한 DoughnutChart 구현 - 상품 분류 별 조회 TOP10
+<img width="1466" alt="image" src="https://github.com/Ozini08/SpringbootProject/assets/111555414/31fb6166-5525-461f-bd79-ae53ab806e3f">
