@@ -1,6 +1,9 @@
 package com.project.boot.product.controller;
 
+import com.project.boot.board.domain.BoardVo;
 import com.project.boot.product.domain.ProductAddList;
+import com.project.boot.product.domain.ProductCountDate;
+import com.project.boot.product.domain.ProductCountView;
 import com.project.boot.product.domain.ProductVo;
 import com.project.boot.product.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +14,8 @@ import java.util.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.multipart.MultipartFile;
+
+import static java.util.Arrays.stream;
 
 
 @RestController
@@ -102,5 +107,28 @@ public class ProductController {
         int no = productVo.getProduct_no();
         float rating = productVo.getProduct_rating();
         productService.productRatingAdd(no, rating);
+    }
+
+    @GetMapping("/api/productRegdate")
+    public List<ProductCountDate> findProductRegdate(){
+        List<ProductCountDate> productList = productService.findProductRegdate();
+        List<String> productMonthList = new ArrayList<>();
+
+//        logger.info("LIST_before:{}", productList);
+        for(int i=0;i<productList.toArray().length;i++){
+//            logger.info("LIST_before:{}", productList.get(i).getMonth());
+            String productMonth =productList.get(i).getMonth()+"월";
+            productMonthList.add(productMonth);
+            productList.get(i).setMonth(productMonth);
+//            logger.info("LIST_after:{}", productList.get(i).getMonth());
+        }
+        return productList;
+    }
+
+    @GetMapping("/api/productViewcount")
+    public List<ProductCountView> findProductCountView() {
+        List<ProductCountView> productView = productService.findProductCountView();
+        logger.info("viewList:{}",productView);
+        return productView;
     }
 }

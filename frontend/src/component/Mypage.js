@@ -2,10 +2,11 @@ import React, { useEffect, useLayoutEffect, useState } from 'react';
 import '../styles/GlobalStyles.css';
 import axios from 'axios';
 import '../styles/Mypage.css';
+import {redirect, useNavigate} from "react-router-dom";
 
 function Mypage() {
     const [userData, setUserData] = useState(null);
-
+    const navigate = useNavigate();
     useLayoutEffect(() => {
         fetchUserMyPage();
     }, []);
@@ -26,7 +27,7 @@ function Mypage() {
     };
 
     if (!userData) {
-        return <div>Loading...</div>;
+        return <h2>Loading...</h2>;
     }
 
     return (

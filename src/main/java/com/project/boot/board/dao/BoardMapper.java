@@ -47,4 +47,5 @@ public interface BoardMapper{
     );
 
     void boardRecommend(@Param("no") int no);
+
 }

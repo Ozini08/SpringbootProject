@@ -76,4 +76,6 @@ public class BoardController {
         logger.info("NO:{}",boardNo);
         boardService.boardRecommend(boardNo);
     }
+
+
 }

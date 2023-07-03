@@ -48,6 +48,7 @@
         FROM BOARD_TAB
         WHERE BOARD_NO = #{boardNo}
     </select>
+
     <insert id="boardAdd" parameterType="com.project.boot.board.domain.BoardVo">
         INSERT INTO BOARD_TAB(BOARD_TITLE,
                               BOARD_WRITER,
@@ -84,4 +85,5 @@
             BOARD_RECOMMENDCOUNT = BOARD_RECOMMENDCOUNT+1
         WHERE BOARD_NO = #{no}
     </update>
+
 </mapper>

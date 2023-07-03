@@ -7,11 +7,14 @@ import org.apache.catalina.User;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.lang.reflect.Member;
+import java.sql.SQLException;
+import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -59,12 +62,17 @@ public class UserController {
 
     @PostMapping("/api/signup")
     public String userSignUp(@RequestBody UserVo userVo){
-        String id = userVo.getUser_id();
-        String password = userVo.getUser_password();
-        String nickname = userVo.getUser_nickname();
-        String address = userVo.getUser_address();
-        userService.userSignUp(id,password,nickname,address);
-        return "redirect:/";
+        try {
+            String id = userVo.getUser_id();
+            String password = userVo.getUser_password();
+            String nickname = userVo.getUser_nickname();
+            String address = userVo.getUser_address();
+            userService.userSignUp(id, password, nickname, address);
+//        SQLIntegrityConstraintViolationException 처리 구문
+            return "redirect:/";
+        }catch(DataIntegrityViolationException ex){
+            return "redirect:/error";
+        }
     }
 
     @GetMapping("/api/mypage")

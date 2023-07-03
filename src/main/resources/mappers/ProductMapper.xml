@@ -125,4 +125,17 @@
             PRODUCT_RATING = #{ratingAvg}
         WHERE PRODUCT_NO=#{no}
     </update>
+    <select id="findProductRegdate" resultType="com.project.boot.product.domain.ProductCountDate">
+        SELECT YEAR(PRODUCT_REGDATE) AS YEAR, MONTH(PRODUCT_REGDATE) AS MONTH, COUNT(*) AS COUNT_BY_YEAR_MONTH
+        FROM PRODUCT_TAB
+        GROUP BY YEAR(PRODUCT_REGDATE), MONTH(PRODUCT_REGDATE)
+        ORDER BY YEAR ASC;
+    </select>
+    <select id="findProductCountView" resultType="com.project.boot.product.domain.ProductCountView">
+        SELECT PRODUCT_CATEGORY, SUM(PRODUCT_VIEWCOUNT) AS TOTAL_VIEWCOUNT
+        FROM PRODUCT_TAB
+        GROUP BY PRODUCT_CATEGORY
+        ORDER BY TOTAL_VIEWCOUNT DESC
+        LIMIT 5;
+    </select>
 </mapper>

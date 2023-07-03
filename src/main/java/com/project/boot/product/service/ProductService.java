@@ -2,6 +2,8 @@ package com.project.boot.product.service;
 
 import com.project.boot.product.controller.ProductController;
 import com.project.boot.product.dao.ProductMapper;
+import com.project.boot.product.domain.ProductCountDate;
+import com.project.boot.product.domain.ProductCountView;
 import com.project.boot.product.domain.ProductVo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -116,6 +118,16 @@ public class ProductService {
         int ratingTotal = prevRating.getProduct_ratingsum(); //평점 전체 합
         float ratingAvg = (float) ratingTotal / ratingCount; //평점의 평균
         productMapper.productUpdateRating(no,ratingAvg);
+    }
+
+    public List<ProductCountDate> findProductRegdate() {
+        List<ProductCountDate>productList = productMapper.findProductRegdate();
+        return productList;
+    }
+
+    public List<ProductCountView> findProductCountView() {
+        List<ProductCountView>productList=productMapper.findProductCountView();
+        return productList;
     }
 }
 

@@ -50,4 +50,5 @@ public class BoardService {
         logger.info("BOARD_NO : {}",no);
         boardMapper.boardRecommend(no);
     }
+
 }

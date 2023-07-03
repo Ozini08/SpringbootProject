@@ -3,6 +3,7 @@ import '../styles/GlobalStyles.css';
 import axios from "axios";
 import {useNavigate} from "react-router-dom";
 import '../styles/Signup.css';
+
 const Signup = () => {
     const navigate = useNavigate();
     const [id, setId] = useState('');
@@ -13,26 +14,34 @@ const Signup = () => {
 
     const handleSignup = async (e) => {
         e.preventDefault();
-        const UserSignup={
-            user_id:id,
-            user_password:password,
-            user_passwordCheck:passwordCheck,
-            user_nickname : nickName,
-            user_address : address,
+        const UserSignup = {
+            user_id: id,
+            user_password: password,
+            user_passwordCheck: passwordCheck,
+            user_nickname: nickName,
+            user_address: address,
         };
 
-        try {
-            await axios.post('/api/signup', UserSignup)
-                .then((response) => {
-                    console.log(response.data);
-                    if(response.data === "redirect:/"){
-                        alert("회원가입 완료");
-                        navigate("/signin");
-                    }
-                })
+        if (UserSignup.user_password === UserSignup.user_passwordCheck) {
+            try {
+                await axios.post('/api/signup', UserSignup)
+                    .then((response) => {
+                        console.log(response.data);
+                        if (response.data === "redirect:/") {
+                            alert("회원가입 완료");
+                            navigate("/signin");
+                        }
+                        else if (response.data === "redirect:/error") {
+                            alert("동일한 아이디가 존재합니다. 아이디 중복체크를 해주세요")
+                        }
+                    })
 
-        } catch (error) {
-            console.error('로그인 실패:', error);
+            } catch (error) {
+                console.error('로그인 실패:', error);
+            }
+        }
+        else if(UserSignup.user_password !== UserSignup.user_passwordCheck) {
+            alert('비밀번호와 비밀번호체크에 입력한 내용이 다릅니다');
         }
     };
     const handleIdChecked = async (e) => {
@@ -44,18 +53,17 @@ const Signup = () => {
         try {
             const response = await axios
                 .post('/api/userIdCheck', UserIdChecked)
-                .then((response)=>{
+                .then((response) => {
                     if (response.data === 'fail') {
                         alert("이미 사용 중인 아이디입니다.");
-                    }else if (response.data === "success"){
+                    } else if (response.data === "success") {
                         alert("사용 가능한 아이디입니다.")
                     }
                 })
         } catch (error) {
         }
     };
-    return (
-        <div>
+    return (<div>
             <h2 className="signup-title">회원가입</h2>
             <form className="login-container" onSubmit={handleSignup}>
                 <div>
@@ -109,8 +117,7 @@ const Signup = () => {
                     <button type="submit">회원가입</button>
                 </div>
             </form>
-        </div>
-    );
+        </div>);
 };
 
 export default Signup;
