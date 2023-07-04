@@ -1,10 +1,7 @@
 package com.project.boot.product.controller;
 
 import com.project.boot.board.domain.BoardVo;
-import com.project.boot.product.domain.ProductAddList;
-import com.project.boot.product.domain.ProductCountDate;
-import com.project.boot.product.domain.ProductCountView;
-import com.project.boot.product.domain.ProductVo;
+import com.project.boot.product.domain.*;
 import com.project.boot.product.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -128,7 +125,14 @@ public class ProductController {
     @GetMapping("/api/productViewcount")
     public List<ProductCountView> findProductCountView() {
         List<ProductCountView> productView = productService.findProductCountView();
-        logger.info("viewList:{}",productView);
+//        logger.info("viewList:{}",productView);
         return productView;
+    }
+
+    @GetMapping("/api/productManufacturercount")
+    public List<ProductManufacturerCount> findProductManufacturer(){
+        List<ProductManufacturerCount> manufacturerCount=productService.findProductManufacturer();
+        logger.info("manufacturer:{}",manufacturerCount);
+        return manufacturerCount;
     }
 }

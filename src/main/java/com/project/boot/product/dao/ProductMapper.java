@@ -2,6 +2,7 @@ package com.project.boot.product.dao;
 
 import com.project.boot.product.domain.ProductCountDate;
 import com.project.boot.product.domain.ProductCountView;
+import com.project.boot.product.domain.ProductManufacturerCount;
 import com.project.boot.product.domain.ProductVo;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -71,4 +72,6 @@ public interface ProductMapper {
     List<ProductCountDate> findProductRegdate();
 
     List<ProductCountView> findProductCountView();
+
+    List<ProductManufacturerCount> findProductManufacturer();
 }

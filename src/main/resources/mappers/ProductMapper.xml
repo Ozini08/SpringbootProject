@@ -138,4 +138,9 @@
         ORDER BY TOTAL_VIEWCOUNT DESC
         LIMIT 5;
     </select>
+    <select id="findProductManufacturer" resultType="com.project.boot.product.domain.ProductManufacturerCount">
+        SELECT PRODUCT_MANUFACTURER, COUNT(*) AS COUNT
+        FROM PRODUCT_TAB
+        GROUP BY PRODUCT_MANUFACTURER;
+    </select>
 </mapper>

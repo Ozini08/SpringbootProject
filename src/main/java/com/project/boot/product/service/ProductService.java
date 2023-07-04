@@ -4,6 +4,7 @@ import com.project.boot.product.controller.ProductController;
 import com.project.boot.product.dao.ProductMapper;
 import com.project.boot.product.domain.ProductCountDate;
 import com.project.boot.product.domain.ProductCountView;
+import com.project.boot.product.domain.ProductManufacturerCount;
 import com.project.boot.product.domain.ProductVo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -128,6 +129,11 @@ public class ProductService {
     public List<ProductCountView> findProductCountView() {
         List<ProductCountView>productList=productMapper.findProductCountView();
         return productList;
+    }
+
+    public List<ProductManufacturerCount> findProductManufacturer() {
+        List<ProductManufacturerCount>manufacturerList=productMapper.findProductManufacturer();
+        return manufacturerList;
     }
 }
 
