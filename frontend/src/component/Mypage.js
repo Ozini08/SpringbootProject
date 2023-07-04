@@ -41,7 +41,7 @@ function Mypage() {
                     </tr>
                     <tr>
                         <td className="profile-image">
-                            <img src="프로필 이미지 경로" alt="프로필 이미지" />
+                            <div>프로필</div>
                         </td>
                     </tr>
                     <tr>
