@@ -39,3 +39,6 @@ router 사용해서 페이지 간 이동할 수 있도록 세팅
 
 23.07.03 MUI를 이용한 BarChart 구현 - 전체상품 등록개수(년/월), ChartJS를 이용한 DoughnutChart 구현 - 상품 분류 별 조회 TOP10
 <img width="1466" alt="image" src="https://github.com/Ozini08/SpringbootProject/assets/111555414/31fb6166-5525-461f-bd79-ae53ab806e3f">
+
+23.07.04 EChart를 이용한 LineChart 구현 - 제조사별 등록 개수
+<img width="1466" alt="image" src="https://github.com/Ozini08/SpringbootProject/assets/111555414/03caa39c-ae92-4c45-a2b9-343a9fa1d0db">
